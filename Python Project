@@ -1,0 +1,53 @@
+def calculate_duration(age, unit):
+
+    months_in_year = 12
+    weeks_in_year = 52
+    days_in_year = 365  
+    hours_in_day = 24
+    minutes_in_hour = 60
+    seconds_in_minute = 60
+
+    if unit == 'm' or unit == 'months':
+        duration = age * months_in_year
+        unit_name = "Months"
+    elif unit == 'w' or unit == 'weeks':
+        duration = age * weeks_in_year
+        unit_name = "Weeks"
+    elif unit == 'd' or unit == 'days':
+        duration = age * days_in_year
+        unit_name = "Days"
+    elif unit == 'h' or unit == 'hours':
+        duration = age * days_in_year * hours_in_day
+        unit_name = "Hours"
+    elif unit == 'min' or unit == 'minutes':
+        duration = age * days_in_year * hours_in_day * minutes_in_hour
+        unit_name = "Minutes"
+    elif unit == 's' or unit == 'seconds':
+        duration = age * days_in_year * hours_in_day * minutes_in_hour * seconds_in_minute
+        unit_name = "Seconds"
+    else:
+        return None, None
+
+    return duration, unit_name
+
+def main():
+    try:
+        age = float(input("What's your age? "))
+        if age < 0:
+            raise ValueError("Age cannot be negative.")
+        
+        unit = input("Please choose a time unit: Months, Weeks, Days, Hours, Minutes, Seconds.\n"
+                     "Note: You can write the first letter or the full name of the time unit. ").strip().lower()
+
+        duration, unit_name = calculate_duration(age, unit)
+
+        if duration is not None:
+            print(f"You lived for {duration:.2f} {unit_name}.")
+        else:
+            print("Invalid time unit chosen.")
+
+    except ValueError as ve:
+        print(f"Invalid input: {ve}")
+
+if __name__ == "__main__":
+    main()
